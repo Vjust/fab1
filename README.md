@@ -1,2 +1,2 @@
-# fab1
-Fabric test
+# Fabric sample script for Django with VirtualEnv
+

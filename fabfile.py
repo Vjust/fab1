@@ -8,10 +8,12 @@ env.hosts = ["sjac-dev1"]
 
 
 def test():
+    """Run tests"""
     local("./manage.py test myapp")
 
 
 def commit():
+    """Commit prior to deploy"""
     with settings(warn_only=True):
         result = local("git add . && git commit -m 'checkedin'", capture=True)
     if result.failed and not confirm("Git failed. Continue?"):
@@ -19,16 +21,19 @@ def commit():
 
 
 def push():
+    """Push before deploy"""
     local("git push")
 
 
 def prepare_deploy():
+    """Local deploy"""
     test()
     commit()
     push()
 
 
 def deploy():
+    """Remote deploy"""
     code_dir = "/home/vjust/django/myproject"
     with settings(warn_only=True):
         # first time
